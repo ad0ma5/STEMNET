@@ -1,0 +1,39 @@
+<?php
+ // module/TillReceipt/view/till-receipt/till-receipt/index.phtml:
+
+ $title = 'TillReceipt';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+
+
+ <pre>
+-----------------------------------
+<?php
+foreach ($tillReceiptTable->data->items as $key=>$item) :
+    echo $key;
+    for($a = strlen($key); $a<26;$a++) echo " ";
+    //"Baked Beans                "
+    echo " | ".$tillReceiptTable->data->currency." ".$item."\n";
+endforeach;
+ ?>
+-----------------------------------
+Sub-Total                 <?php echo " | ".$this->escapeHtml($tillReceiptTable->data->currency." ".$tillReceiptTable->subTotal."\n");?>
+Discounts                 <?php echo " | ".$this->escapeHtml($tillReceiptTable->data->currency." ".$tillReceiptTable->discountsTotal."\n");?>
+-----------------------------------
+Grand Total               <?php echo " | ".$this->escapeHtml($tillReceiptTable->data->currency." ".$tillReceiptTable->total."\n");?>
+-----------------------------------
+<?php /*
+-----------------------------------
+Baked Beans                | £ 0.50
+Washing Up Liquid          | £ 0.72
+Rubber Gloves              | £ 1.50
+Bread                      | £ 0.72
+Butter                     | £ 0.83
+-----------------------------------
+Sub-Total                  | £ 4.27
+Discounts                  | £ 0.50
+-----------------------------------
+Grand Total                | £ 3.77
+*/ ?>
+</pre>
